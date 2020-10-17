@@ -10,6 +10,7 @@ import Login from '@pages/auth/Login';
 import Home from '@pages/Home';
 import Mine from '@pages/Mine';
 import Detail from '@pages/Detail';
+import Found from '@pages/Found';
 
 const TabStack = createBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -30,6 +31,7 @@ function TabStackScreen() {
       <TabStack.Screen
         options={(props) => {
           return {
+            // @ts-ignore
             tabBarVisible: !props.route.state || props.route.state.index === 0,
           };
         }}
@@ -43,7 +45,8 @@ function TabStackScreen() {
 
 function RootStackScreen() {
   return (
-    <RootStack.Navigator headerMode={'screen'} screenOptions={screenOptions}>
+    // @ts-ignore
+    <RootStack.Navigator headerMode={'float'} screenOptions={screenOptions}>
       <RootStack.Screen
         options={{headerShown: false}}
         name={'Tab'}
@@ -57,6 +60,7 @@ function RootStackScreen() {
         component={Login}
       />
       <RootStack.Screen name={'Detail'} component={Detail} />
+      <RootStack.Screen name={'Found'} component={Found} />
     </RootStack.Navigator>
   );
 }

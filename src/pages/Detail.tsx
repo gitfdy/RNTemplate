@@ -14,7 +14,7 @@ export default class extends React.PureComponent<IProps> {
       <View>
         <Text style={{marginTop: 200}}>Home</Text>
         <Button title={'跳转到登录'} onPress={() => this._to('Login')} />
-        <Button title={'跳转到详情'} onPress={() => this._to('Detail')} />
+        <Button title={'跳转到详情'} onPress={() => this._to('Found')} />
       </View>
     );
   }
