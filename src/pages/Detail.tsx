@@ -12,9 +12,9 @@ export default class extends React.PureComponent<IProps> {
   render() {
     return (
       <View>
-        <Text style={{marginTop: 200}}>Home</Text>
+        <Text style={{marginTop: 200}}>详情</Text>
         <Button title={'跳转到登录'} onPress={() => this._to('Login')} />
-        <Button title={'跳转到详情'} onPress={() => this._to('Found')} />
+        <Button title={'跳转到发现'} onPress={() => this._to('Found')} />
       </View>
     );
   }

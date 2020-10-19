@@ -2,15 +2,13 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
+  HeaderStyleInterpolators,
   StackNavigationProp,
   TransitionPresets,
 } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Login from '@pages/auth/Login';
-import Home from '@pages/Home';
-import Mine from '@pages/Mine';
-import Detail from '@pages/Detail';
-import Found from '@pages/Found';
+import {Pages, Tabs} from '@navigator/pages';
 
 const TabStack = createBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -28,17 +26,16 @@ export type RootStackNavigation = StackNavigationProp<RootStackParamList>;
 function TabStackScreen() {
   return (
     <TabStack.Navigator>
-      <TabStack.Screen
-        options={(props) => {
-          return {
-            // @ts-ignore
-            tabBarVisible: !props.route.state || props.route.state.index === 0,
-          };
-        }}
-        name="Home"
-        component={Home}
-      />
-      <TabStack.Screen name="Mine" component={Mine} />
+      {Object.entries({
+        ...Tabs,
+      }).map(([name, component]) => (
+        <TabStack.Screen
+          key={name}
+          options={component.options ? component.options : {}}
+          name={name}
+          component={component.screen}
+        />
+      ))}
     </TabStack.Navigator>
   );
 }
@@ -52,15 +49,23 @@ function RootStackScreen() {
         name={'Tab'}
         component={TabStackScreen}
       />
-      <RootStack.Screen
-        options={{
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-        }}
-        name={'Login'}
-        component={Login}
-      />
-      <RootStack.Screen name={'Detail'} component={Detail} />
-      <RootStack.Screen name={'Found'} component={Found} />
+
+      {Object.entries({
+        ...Pages,
+      }).map(([name, component]) => (
+        <RootStack.Screen
+          key={name}
+          options={
+            component.options
+              ? component.options
+              : {
+                  headerStyleInterpolator: HeaderStyleInterpolators.forFade,
+                }
+          }
+          name={name}
+          component={component.screen}
+        />
+      ))}
     </RootStack.Navigator>
   );
 }
