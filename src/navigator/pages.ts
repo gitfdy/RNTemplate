@@ -6,7 +6,6 @@ import Login from '@pages/auth/Login';
 import {
   HeaderStyleInterpolators,
   TransitionPresets,
-  TransitionSpecs,
 } from '@react-navigation/stack';
 
 const headerStyleInterpolator = HeaderStyleInterpolators.forUIKit;

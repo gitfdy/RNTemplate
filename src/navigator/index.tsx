@@ -2,12 +2,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
-  HeaderStyleInterpolators,
   StackNavigationProp,
-  TransitionPresets,
 } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Login from '@pages/auth/Login';
 import {Pages, Tabs} from '@navigator/pages';
 
 const TabStack = createBottomTabNavigator();
@@ -55,13 +52,7 @@ function RootStackScreen() {
       }).map(([name, component]) => (
         <RootStack.Screen
           key={name}
-          options={
-            component.options
-              ? component.options
-              : {
-                  headerStyleInterpolator: HeaderStyleInterpolators.forFade,
-                }
-          }
+          options={component.options ? component.options : {}}
           name={name}
           component={component.screen}
         />
